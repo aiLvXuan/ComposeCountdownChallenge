@@ -1,6 +1,20 @@
+/*
+ * Copyright 2021 The Android Open Source Project
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     https://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
 package com.example.androiddevchallenge.ui
 
-import android.util.Log
 import androidx.compose.animation.core.AnimationState
 import androidx.compose.animation.core.DecayAnimationSpec
 import androidx.compose.animation.core.animateDecay
@@ -8,13 +22,24 @@ import androidx.compose.animation.defaultDecayAnimationSpec
 import androidx.compose.foundation.background
 import androidx.compose.foundation.gestures.FlingBehavior
 import androidx.compose.foundation.gestures.ScrollScope
-import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxHeight
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.LazyListState
 import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material.*
-import androidx.compose.runtime.*
+import androidx.compose.material.AlertDialog
+import androidx.compose.material.Divider
+import androidx.compose.material.Text
+import androidx.compose.material.TextButton
+import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -44,14 +69,12 @@ fun TimePickerDialog(
     val minState = rememberLazyListState(getHalfIndex(60), offset)
     val secState = rememberLazyListState(getHalfIndex(60), offset)
 
-
     AlertDialog(
         onDismissRequest = onDismiss,
         buttons = {
             Column {
                 Spacer(modifier = Modifier.padding(top = 8.dp))
                 TimeView(hourState, minState, secState)
-
 
                 Spacer(
                     modifier = Modifier
@@ -106,8 +129,8 @@ fun TimePickerDialog(
                     }
                 }
             }
-        })
-
+        }
+    )
 }
 
 @Composable
@@ -151,7 +174,6 @@ private fun TimeView(
 
 //                scrollToItem(state, half, (itemHeight.value / 2).toInt())
 
-
                 Row(
                     modifier = Modifier
                         .weight(1f)
@@ -176,7 +198,6 @@ private fun TimeView(
                     )
                     Text(text[index], textAlign = TextAlign.Center)
                 }
-
             }
         }
     }
@@ -238,16 +259,16 @@ private class PickerFlingBehavior(
 
         return velocityLeft
     }
-
 }
 
 private fun getHalfIndex(size: Int) = Int.MAX_VALUE / size / 2 * size - 2
 
-
 @Preview
 @Composable
 fun Preview() {
-    TimePickerDialog(onDismiss = { }, onConfirm = { hour, min, sec ->
-
-    })
+    TimePickerDialog(
+        onDismiss = { },
+        onConfirm = { hour, min, sec ->
+        }
+    )
 }
