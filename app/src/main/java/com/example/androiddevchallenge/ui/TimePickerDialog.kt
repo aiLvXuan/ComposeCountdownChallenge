@@ -75,11 +75,12 @@ fun TimePickerDialog(
             Column {
                 Spacer(modifier = Modifier.padding(top = 8.dp))
                 TimeView(hourState, minState, secState)
+                Spacer(modifier = Modifier.padding(top = 8.dp))
 
-                Spacer(
+                Divider(
                     modifier = Modifier
-                        .padding(top = 10.dp)
-                        .background(Color.Gray)
+                        .fillMaxWidth()
+                        .width(1.dp)
                 )
 
                 Row(
